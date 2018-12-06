@@ -17,7 +17,7 @@ import {EscortRepository} from './repositories';
 
 
 export async function createDB(app: ServerApplication) {
- const ds = await app.get<DataSource>('datasources.local');
+ const ds = await app.get<DataSource>('datasources.couchdb');
  const userRepo = await app.getRepository(UserRepository);
  const caseDocRepo = await app.getRepository(CaseDocumentRepository);
  const caseEscortRecRepo = await app.getRepository(CaseEscortReceiptRepository);
@@ -47,7 +47,7 @@ export async function createDB(app: ServerApplication) {
 }
 
 export async function updateDB(app: ServerApplication) {
- const ds = await app.get<DataSource>('datasources.local');
+ const ds = await app.get<DataSource>('datasources.couchdb');
  const userRepo = await app.getRepository(UserRepository);
  const caseDocRepo = await app.getRepository(CaseDocumentRepository);
  const caseEscortRecRepo = await app.getRepository(CaseEscortReceiptRepository);

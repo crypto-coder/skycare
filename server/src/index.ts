@@ -10,7 +10,7 @@ export async function main(options: ApplicationConfig = {}) {
   await app.start();
 
 
-//  await createDB(app);
+  await createDB(app);
   const url = app.restServer.url;
   console.log(`Server is running at ${url}`);
   console.log(`Try ${url}/ping`);

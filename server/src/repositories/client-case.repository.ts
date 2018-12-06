@@ -1,6 +1,6 @@
 import {DefaultCrudRepository, juggler} from '@loopback/repository';
 import {ClientCase} from '../models';
-import {LocalDataSource} from '../datasources';
+import {CouchdbDataSource} from '../datasources';
 import {inject} from '@loopback/core';
 
 export class ClientCaseRepository extends DefaultCrudRepository<
@@ -8,7 +8,7 @@ export class ClientCaseRepository extends DefaultCrudRepository<
   typeof ClientCase.prototype.caseID
 > {
   constructor(
-    @inject('datasources.local') dataSource: LocalDataSource,
+    @inject('datasources.couchdb') dataSource: CouchdbDataSource,
   ) {
     super(ClientCase, dataSource);
   }
