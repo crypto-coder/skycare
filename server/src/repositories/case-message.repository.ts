@@ -1,6 +1,6 @@
 import {DefaultCrudRepository, juggler} from '@loopback/repository';
 import {CaseMessage} from '../models';
-import {CouchdbDataSource} from '../datasources';
+import {CloudantDataSource} from '../datasources';
 import {inject} from '@loopback/core';
 
 export class CaseMessageRepository extends DefaultCrudRepository<
@@ -8,7 +8,7 @@ export class CaseMessageRepository extends DefaultCrudRepository<
   typeof CaseMessage.prototype.messageID
 > {
   constructor(
-    @inject('datasources.couchdb') dataSource: CouchdbDataSource,
+    @inject('datasources.cloudant') dataSource: CloudantDataSource,
   ) {
     super(CaseMessage, dataSource);
   }

@@ -1,6 +1,6 @@
 import {DefaultCrudRepository, juggler} from '@loopback/repository';
 import {Escort} from '../models';
-import {CouchdbDataSource} from '../datasources';
+import {CloudantDataSource} from '../datasources';
 import {inject} from '@loopback/core';
 
 export class EscortRepository extends DefaultCrudRepository<
@@ -8,7 +8,7 @@ export class EscortRepository extends DefaultCrudRepository<
   typeof Escort.prototype.escortID
 > {
   constructor(
-    @inject('datasources.couchdb') dataSource: CouchdbDataSource,
+    @inject('datasources.cloudant') dataSource: CloudantDataSource,
   ) {
     super(Escort, dataSource);
   }

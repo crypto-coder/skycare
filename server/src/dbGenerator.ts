@@ -17,37 +17,41 @@ import {EscortRepository} from './repositories';
 
 
 export async function createDB(app: ServerApplication) {
- const ds = await app.get<DataSource>('datasources.couchdb');
- const userRepo = await app.getRepository(UserRepository);
- const caseDocRepo = await app.getRepository(CaseDocumentRepository);
- const caseEscortRecRepo = await app.getRepository(CaseEscortReceiptRepository);
- const caseEscortRepo = await app.getRepository(CaseEscortRepository);
- const caseMessageRepo = await app.getRepository(CaseMessageRepository);
- const caseProgressNote = await app.getRepository(CaseProgressNoteRepository);
- const caseStatusChange = await app.getRepository(CaseStatusChangeRepository);
- const caseTransactionRep = await app.getRepository(CaseTransactionRepository);
- const clientCaseRepo = await app.getRepository(ClientCaseRepository);
- const compnayUserRepo = await app.getRepository(CompanyUserRepository);
- const companyUserRepo = await app.getRepository(CompanyRepository);
- const escortAva = await app.getRepository(EscortAvailabilityRepository);
- const escourtDoc= await app.getRepository(EscortDocumentRepository);
- const escourtRepo = await app.getRepository(EscortRepository);
+  const ds = await app.get<DataSource>('datasources.cloudant');
+  setTimeout(() => finishCreatingDB(app, ds), 5000);
+}
 
- await ds.automigrate();
+export async function finishCreatingDB(app: ServerApplication, ds: DataSource) {
+  const userRepo = await app.getRepository(UserRepository);
+  const caseDocRepo = await app.getRepository(CaseDocumentRepository);
+  const caseEscortRecRepo = await app.getRepository(CaseEscortReceiptRepository);
+  const caseEscortRepo = await app.getRepository(CaseEscortRepository);
+  const caseMessageRepo = await app.getRepository(CaseMessageRepository);
+  const caseProgressNote = await app.getRepository(CaseProgressNoteRepository);
+  const caseStatusChange = await app.getRepository(CaseStatusChangeRepository);
+  const caseTransactionRep = await app.getRepository(CaseTransactionRepository);
+  const clientCaseRepo = await app.getRepository(ClientCaseRepository);
+  const compnayUserRepo = await app.getRepository(CompanyUserRepository);
+  const companyUserRepo = await app.getRepository(CompanyRepository);
+  const escortAva = await app.getRepository(EscortAvailabilityRepository);
+  const escourtDoc= await app.getRepository(EscortDocumentRepository);
+  const escourtRepo = await app.getRepository(EscortRepository);
 
- userRepo.create({
-   id: 1,
-   username: 'admin',
-   password: 'test',
-   email: 'admin@test.com',
-   key2FA: 'empty',
-   emailVerified: true
- });
+  await ds.automigrate();
+
+  userRepo.create({
+    id: 1,
+    username: 'admin',
+    password: 'test',
+    email: 'admin@test.com',
+    key2FA: 'empty',
+    emailVerified: true
+  });
 
 }
 
 export async function updateDB(app: ServerApplication) {
- const ds = await app.get<DataSource>('datasources.couchdb');
+ const ds = await app.get<DataSource>('datasources.cloudant');
  const userRepo = await app.getRepository(UserRepository);
  const caseDocRepo = await app.getRepository(CaseDocumentRepository);
  const caseEscortRecRepo = await app.getRepository(CaseEscortReceiptRepository);

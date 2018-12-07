@@ -1,6 +1,6 @@
 import {DefaultCrudRepository, juggler} from '@loopback/repository';
 import {CaseTransaction} from '../models';
-import {CouchdbDataSource} from '../datasources';
+import {CloudantDataSource} from '../datasources';
 import {inject} from '@loopback/core';
 
 export class CaseTransactionRepository extends DefaultCrudRepository<
@@ -8,7 +8,7 @@ export class CaseTransactionRepository extends DefaultCrudRepository<
   typeof CaseTransaction.prototype.transactionID
 > {
   constructor(
-    @inject('datasources.couchdb') dataSource: CouchdbDataSource,
+    @inject('datasources.cloudant') dataSource: CloudantDataSource,
   ) {
     super(CaseTransaction, dataSource);
   }

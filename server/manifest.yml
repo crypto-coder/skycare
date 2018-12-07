@@ -1,0 +1,8 @@
+applications:
+- name: skycare-dev
+  disk_quota: 1G
+  instances: 1
+  memory: 256M
+  routes:
+  - route: skycare-dev.mybluemix.net
+  stack: cflinuxfs2
